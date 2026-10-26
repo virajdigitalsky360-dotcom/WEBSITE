@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIRSTUDIO | Medical & Healthcare Video Post-Production</title>
+  <meta name="description" content="Specialist medical video editor focused exclusively on Medical Reels, Doctor Testimonials, Healthcare Video Production, and High-Retention Social Media for Clinics and Physicians.">
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #090B0E;
+      --bg-surface: #11151D;
+      --bg-surface-elevated: #161C27;
+      --bg-surface-translucent: rgba(17, 21, 29, 0.75);
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: #0E6DAD;
+      --border-glow: rgba(14, 109, 173, 0.35);
+
+      --accent-blue: #0E6DAD;
+      --accent-blue-hover: #1783cf;
+      --accent-blue-glow: rgba(14, 109, 173, 0.25);
+      --accent-cyan: #38BDF8;
+
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition-standard: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --container-max: 1280px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: radial-gradient(circle at 50% 0%, #0d1624 0%, var(--bg-primary) 70%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       COMPLIANCE & ANNOUNCEMENT BAR
+       ========================================================================== */
+    .top-bar {
+      background: #0B0E14;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      font-family: var(--font-mono);
+    }
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10B981;
+    }
+
+    /* ==========================================================================
+       NAVIGATION
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-surface-translucent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition-standard);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-blue), #033c63);
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .brand-badge {
+      font-size: 0.65rem;
+      background: rgba(14, 109, 173, 0.15);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      margin-left: 4px;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: var(--transition-standard);
+    }
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-whatsapp {
+      background: #0E6DAD;
+      color: #ffffff;
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.825rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-standard);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 14px var(--accent-blue-glow);
+    }
+    .btn-whatsapp:hover {
+      background: var(--accent-blue-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(14, 109, 173, 0.4);
+    }
+
+    .btn-whatsapp svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .mobile-toggle {
+      display: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding: 6.5rem 0 4.5rem;
+      position: relative;
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .specialist-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(14, 109, 173, 0.1);
+      border: 1px solid rgba(14, 109, 173, 0.35);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 0.775rem;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 4.5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero-title span.blue-highlight {
+      background: linear-gradient(120deg, #F8FAFC 20%, #38BDF8 60%, #0E6DAD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+      max-width: 580px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #fff;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-standard);
+      box-shadow: 0 4px 18px var(--accent-blue-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-blue-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-standard);
+    }
+    .btn-outline:hover {
+      background: var(--bg-surface);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .metric-item h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+    .metric-item p {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero Reel Showcase Card */
+    .hero-reel-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+    .hero-reel-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0E6DAD, #38BDF8, transparent);
+    }
+
+    .hero-video-window {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 9/12;
+      background: #000;
+      cursor: pointer;
+    }
+    .hero-video-window video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9);
+      transition: transform 0.4s ease;
+    }
+    .hero-video-window:hover video {
+      transform: scale(1.02);
+    }
+
+    .play-overlay-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(14, 109, 173, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(14, 109, 173, 0.6);
+      transition: var(--transition-standard);
+      pointer-events: none;
+    }
+    .hero-video-window:hover .play-overlay-btn {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: var(--accent-blue);
+    }
+
+    .hero-badge-overlay {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(9, 11, 14, 0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rec-pulse {
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: recPulse 1.5s infinite;
+    }
+    @keyframes recPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ==========================================================================
+       PORTFOLIO & CATEGORY FILTERS
+       ========================================================================== */
+    .section-spacing {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 2.5rem;
+    }
+    .section-head.center {
+      text-align: center;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+    .section-title {
+      font-size: clamp(1.85rem, 3vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Category Filter Tabs */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      background: var(--bg-surface);
+      padding: 6px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      width: fit-content;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      transition: var(--transition-standard);
+    }
+    .filter-btn.active {
+      background: var(--accent-blue);
+      color: #fff;
+    }
+    .filter-btn:not(.active):hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Portfolio Gallery Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .portfolio-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-standard);
+      position: relative;
+    }
+    .portfolio-card:hover {
+      border-color: rgba(14, 109, 173, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(14, 109, 173, 0.2);
+    }
+
+    .card-preview {
+      position: relative;
+      background: #06080b;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .card-preview.aspect-vertical {
+      aspect-ratio: 9/14;
+    }
+    .card-preview.aspect-landscape {
+      aspect-ratio: 16/9;
+    }
+
+    .card-preview video, .card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .portfolio-card:hover .card-preview video,
+    .portfolio-card:hover .card-preview img {
+      transform: scale(1.03);
+    }
+
+    .card-meta-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      font-size: 0.68rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+    }
+
+    .card-play-action {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(14, 109, 173, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      opacity: 0.85;
+      transition: var(--transition-standard);
+    }
+    .portfolio-card:hover .card-play-action {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+      background: #1783cf;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-header-cat {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .card-details {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .card-specs {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.75rem;
+      font-family: var(--font-mono);
+    }
+    .card-spec-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ==========================================================================
+       FOUR CORE SERVICES (SPECIALIST FOCUS ONLY)
+       ========================================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.25rem;
+      transition: var(--transition-standard);
+      position: relative;
+    }
+    .service-box:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-surface-elevated);
+      transform: translateY(-2px);
+    }
+    .service-number {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+    }
+    .service-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+    }
+    .service-desc {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .service-deliverables {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.25rem;
+    }
+    .service-deliverables li {
+      font-size: 0.825rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-deliverables li svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       CLINICAL WORKFLOW (MEDICAL PIPELINE)
+       ========================================================================== */
+    .workflow-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      position: relative;
+    }
+    .workflow-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 1.25rem;
+      position: relative;
+    }
+    .step-badge {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      background: rgba(14, 109, 173, 0.2);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-cyan);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+    }
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .step-text {
+      font-size: 0.825rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       ABOUT SECTION
+       ========================================================================== */
+    .about-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: #000;
+      padding: 1.5rem;
+    }
+    .specs-panel {
+      font-family: var(--font-mono);
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+    .spec-row span:last-child {
+      color: var(--accent-cyan);
+    }
+
+    .about-content h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .about-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .focus-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .f-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       CONTACT & BOOKING SECTION
+       ========================================================================== */
+    .contact-wrapper {
+      background: linear-gradient(180deg, var(--bg-surface) 0%, #0c1017 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .contact-info h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .direct-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      transition: var(--transition-standard);
+    }
+    .contact-method:hover {
+      border-color: var(--accent-blue);
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(14, 109, 173, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+    .contact-method-detail h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .contact-method-detail p {
+      margin: 0;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* WhatsApp Highlight Card */
+    .whatsapp-card {
+      background: rgba(14, 109, 173, 0.1);
+      border: 1px solid rgba(14, 109, 173, 0.4);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin-top: 1rem;
+    }
+    .whatsapp-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .form-input, .form-textarea, .form-select {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition-standard);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px var(--accent-blue-glow);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--accent-blue);
+      color: #fff;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-standard);
+      font-size: 0.925rem;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover {
+      background: var(--accent-blue-hover);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3rem 0;
+      background: #06080B;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    /* ==========================================================================
+       MODAL VIDEO PLAYER (WORKING POPUP)
+       ========================================================================== */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 10, 0.92);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .video-modal.active {
+      display: flex;
+    }
+    .modal-content-box {
+      position: relative;
+      background: #0B0E14;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
+    }
+    .modal-content-box.aspect-reel {
+      max-width: 440px;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .modal-header h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .modal-close-btn {
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: var(--transition-standard);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+    }
+    .modal-close-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-video-container {
+      position: relative;
+      background: #000;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .modal-video-container video {
+      width: 100%;
+      max-height: 75vh;
+      display: block;
+      outline: none;
+    }
+
+    /* Floating WhatsApp widget */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0E6DAD;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(14, 109, 173, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 90;
+      transition: var(--transition-standard);
+    }
+    .floating-wa-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: var(--accent-blue-hover);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .workflow-timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      .nav-menu.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .workflow-timeline {
+        grid-template-columns: 1fr;
+      }
+      .filter-bar {
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Status & HIPAA-Aware Assurance Bar -->
+  <aside class="top-bar" aria-label="Status & compliance announcement">
+    <div class="container top-bar-inner">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>Accepting Select Practice & Physician Projects Q3/Q4</span>
+      </div>
+      <div>
+        <span>HIPAA Patient Privacy & Medical Accuracy Post-Production Standards</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#home" class="brand-logo" aria-label="VIRSTUDIO Home">
+        <div class="brand-icon">
+          <!-- Cross / Pulse Minimal SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <span>VIR<span style="color: var(--accent-cyan);">STUDIO</span></span>
+        <span class="brand-badge">Medical Video</span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#featured" class="nav-link">Featured</a></li>
+        <li><a href="#portfolio" class="nav-link">Medical Portfolio</a></li>
+        <li><a href="#services" class="nav-link">Specialist Services</a></li>
+        <li><a href="#workflow" class="nav-link">Clinical Pipeline</a></li>
+        <li><a href="#about" class="nav-link">About VIR</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Editable WhatsApp CTA -->
+        <a href="https://wa.me/15550192834?text=Hi%20VIRSTUDIO,%20I'm%20interested%20in%20medical%20video%20editing%20for%20my%20practice" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-whatsapp"
+           id="headerWhatsAppBtn">
+          <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.537 1.769.779 2.796.779h.001c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.769-5.766zm3.377 8.203c-.14.394-.814.729-1.129.776-.315.048-.724.084-2.348-.588-1.954-.809-3.21-2.793-3.307-2.923-.098-.13-.797-1.06-.797-2.023 0-.964.506-1.439.686-1.634.181-.195.394-.244.525-.244.132 0 .263.001.378.007.12.006.28-.045.438.334.162.388.552 1.348.6 1.446.048.098.08.213.016.34-.064.128-.096.208-.19.319-.095.111-.2.247-.286.332-.095.095-.195.198-.083.391.111.192.496.818 1.063 1.324.73.652 1.346.854 1.538.95.192.095.305.08.418-.049.112-.128.481-.559.609-.751.128-.193.256-.16.432-.096.176.064 1.115.526 1.307.622.192.096.32.144.368.225.048.08.048.465-.092.859z"/></svg>
+          <span>Quick Chat</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          &#9776;
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-text-col">
+            <div class="specialist-pill">
+              <span>●</span> EXCLUSIVELY HEALTHCARE & MEDICAL EDITING
+            </div>
+            <h1 class="hero-title">
+              Precision Video Editing for <span class="blue-highlight">Doctors, Surgeons & Healthcare Brands.</span>
+            </h1>
+            <p class="hero-description">
+              Elevating clinical authority through high-retention medical reels, authentic doctor testimonial videos, and specialized healthcare post-production. Zero fluff—only clinical pacing and ethical, privacy-first editing.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#portfolio" class="btn-primary">
+                View Medical Edits
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#workflow" class="btn-outline">
+                Our Editorial Standards
+              </a>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <h4>100%</h4>
+                <p>Medical Niche Focus</p>
+              </div>
+              <div class="metric-item">
+                <h4>48h</h4>
+                <p>Turnaround on Reels</p>
+              </div>
+              <div class="metric-item">
+                <h4>HIPAA</h4>
+                <p>De-Identification Care</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Hero Showcase Reel -->
+          <div class="hero-reel-col">
+            <div class="hero-reel-card">
+              <div class="hero-video-window" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', 'Orthopedic Surgery Procedure Highlight Reel', 'reel')">
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80">
+                  <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                </video>
+                <div class="hero-badge-overlay">
+                  <span class="rec-pulse"></span>
+                  <span>PREVIEW: 9:16 SURGICAL REEL</span>
+                </div>
+                <div class="play-overlay-btn" aria-label="Play Reel Showcase">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PORTFOLIO & CATEGORY FILTER SECTION
+         ========================================================================== -->
+    <section class="section-spacing" id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">// Specialized Portfolio</span>
+          <h2 class="section-title">Curated Medical & Clinical Works</h2>
+          <p class="section-subtitle">Categorized by medical formats. Filter by production type to view real-world pacing, color management for clinics, and medical storytelling.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-bar" role="tablist">
+          <button class="filter-btn active" data-filter="all">All Edits</button>
+          <button class="filter-btn" data-filter="medical-reels">Medical Reels</button>
+          <button class="filter-btn" data-filter="doctor-testimonials">Doctor Testimonials</button>
+          <button class="filter-btn" data-filter="healthcare-production">Healthcare Video Production</button>
+          <button class="filter-btn" data-filter="social-media">Social Media Video Editing</button>
+        </div>
+
+        <!-- Portfolio Items -->
+        <div class="portfolio-grid" id="portfolioGallery">
+          
+          <!-- Item 1: Medical Reel -->
+          <article class="portfolio-card" data-category="medical-reels">
+            <div class="card-preview aspect-vertical" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4', 'Dermatology Clinical Peel Explainer Reel', 'reel')">
+              <video muted loop playsinline poster="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" type="video/mp4">
+              </video>
+              <span class="card-meta-tag">9:16 REEL</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Medical Reels Editing</p>
+                <h3 class="card-title">Dermatology Clinical Peel & Pre-Care Guide</h3>
+                <p class="card-details">Snappy cutdowns with annotated clinical safety terms, synced b-roll of treatment rooms, and medical subtitle pacing for patient education.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Duration: 0:42</span>
+                <span class="card-spec-item">FPS: 60fps Clean</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2: Doctor Testimonial -->
+          <article class="portfolio-card" data-category="doctor-testimonials">
+            <div class="card-preview aspect-landscape" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', 'Interventional Cardiologist Case Overview', 'landscape')">
+              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80" alt="Cardiologist Interview Preview">
+              <span class="card-meta-tag">16:9 4K UHD</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Doctor Testimonial Videos</p>
+                <h3 class="card-title">Cardiologist Clinical Case Study & Peer Review</h3>
+                <p class="card-details">Multi-camera physician interview cut with balanced acoustic cleanup, neutralized clinic hospital lighting, and verified medical lower-thirds.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Dual Cam Sync</span>
+                <span class="card-spec-item">Audio Mastering</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3: Healthcare Video Production -->
+          <article class="portfolio-card" data-category="healthcare-production">
+            <div class="card-preview aspect-landscape" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', 'Surgical Facility Brand Film & Operating Theatre Walkthrough', 'landscape')">
+              <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Hospital Facility Overview">
+              <span class="card-meta-tag">16:9 BRAND FILM</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Healthcare Video Production</p>
+                <h3 class="card-title">Advanced Robotic Surgery Suite Facility Overview</h3>
+                <p class="card-details">Comprehensive walkthrough showcasing robotic instruments, sterilized cleanroom protocols, and medical technology capability footage.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Color Graded</span>
+                <span class="card-spec-item">Dynamic Transitions</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4: Social Media Video Editing -->
+          <article class="portfolio-card" data-category="social-media">
+            <div class="card-preview aspect-vertical" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4', 'Orthodontic Mythbusters High-Retention Social Cut', 'reel')">
+              <video muted loop playsinline poster="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
+              </video>
+              <span class="card-meta-tag">9:16 SOCIAL</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Social Media Video Editing</p>
+                <h3 class="card-title">Orthodontic Mythbusters: Retention & Pacing</h3>
+                <p class="card-details">Optimized hook within first 2.5 seconds, clean text animations explaining aligner mechanics, and verified dental terminology.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Duration: 0:38</span>
+                <span class="card-spec-item">High Retention</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 5: Doctor Testimonial -->
+          <article class="portfolio-card" data-category="doctor-testimonials">
+            <div class="card-preview aspect-landscape" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', 'Patient Recovery & Orthopedic Surgeon Joint Dialogue', 'landscape')">
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Doctor Consultation Preview">
+              <span class="card-meta-tag">16:9 CLINICAL STORY</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Doctor Testimonial Videos</p>
+                <h3 class="card-title">Joint Replacement Recovery: Surgeon & Patient Case Dialogue</h3>
+                <p class="card-details">Balancing empathetic bedside storytelling with factual rehabilitation timelines and surgical post-op instructions.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Color Corrected</span>
+                <span class="card-spec-item">HIPAA Compliant</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 6: Medical Reels -->
+          <article class="portfolio-card" data-category="medical-reels">
+            <div class="card-preview aspect-vertical" onclick="openVideoModal('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', 'Plastic Surgery Before/After Protocol Reel', 'reel')">
+              <video muted loop playsinline poster="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+              </video>
+              <span class="card-meta-tag">9:16 MEDICAL REEL</span>
+              <div class="card-play-action">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="card-header-cat">Medical Reels Editing</p>
+                <h3 class="card-title">Minimally Invasive Rhinoplasty: Surgical Breakdown</h3>
+                <p class="card-details">Careful censoring of sensitive incision footage compliant with platform guidelines, paired with clinical graphics and surgeon commentary.</p>
+              </div>
+              <div class="card-specs">
+                <span class="card-spec-item">Guideline Compliant</span>
+                <span class="card-spec-item">Custom Callouts</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SERVICES SECTION (STRICTLY THE 4 CORE SPECIALIZATIONS)
+         ========================================================================== -->
+    <section class="section-spacing" id="services" style="background: #0B0E14; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-head center">
+          <span class="section-tag">// Core Editorial Pillars</span>
+          <h2 class="section-title">Specialist Medical Services</h2>
+          <p class="section-subtitle">VIRSTUDIO does not edit generic lifestyle content or corporate vlogs. Every workflow is purpose-built for the medical, surgical, and healthcare ecosystem.</p>
+        </div>
+
+        <div class="services-grid">
+          
+          <!-- Pillar 1 -->
+          <div class="service-box">
+            <div class="service-number">PILLAR // 01</div>
+            <h3 class="service-heading">Medical Reels Editing</h3>
+            <p class="service-desc">
+              Transform raw procedural recordings and doctor soundbites into bite-sized, high-retention vertical videos optimized for Instagram, TikTok, and YouTube Shorts without sacrificing professional medical dignity.
+            </p>
+            <ul class="service-deliverables">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Social platform-safe surgical blurring and compliance
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Accurate clinical term kinetic captions & callouts
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Pacing mapped to medical audience retention metrics
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="service-box">
+            <div class="service-number">PILLAR // 02</div>
+            <h3 class="service-heading">Doctor Testimonial Videos</h3>
+            <p class="service-desc">
+              Longer-format and multi-camera interview editing tailored for patient trust, clinical authority, and institutional credibility. We turn clinical dialogue into cohesive, authentic patient journeys.
+            </p>
+            <ul class="service-deliverables">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Multi-cam synchronisation and seamless jump-cut concealment
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Noise reduction for clinical/hospital HVAC hums
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Physician credentials, licenses, and verified lower-thirds
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="service-box">
+            <div class="service-number">PILLAR // 03</div>
+            <h3 class="service-heading">Healthcare Video Production</h3>
+            <p class="service-desc">
+              End-to-end post-production for clinical practices, surgical centers, and health-tech equipment manufacturers. Crafting hospital facility walk-throughs, CME educational clips, and device walkthroughs.
+            </p>
+            <ul class="service-deliverables">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Precise color matching between surgical lights & skin tones
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Anatomical motion graphic overlays & timeline diagrams
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Full mastering for website embedding and patient lounges
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="service-box">
+            <div class="service-number">PILLAR // 04</div>
+            <h3 class="service-heading">Social Media Video Editing</h3>
+            <p class="service-desc">
+              Personal brand development for physicians, dentists, and health specialists. We take long podcasts, conferences, or smartphone monologues and repurpose them into consistent weekly assets.
+            </p>
+            <ul class="service-deliverables">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Batch editing systems for weekly continuous publishing
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Optimized 3-second hook structure without clickbait tropes
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Clean brand framing respecting practice aesthetic guidelines
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CLINICAL POST-PRODUCTION WORKFLOW
+         ========================================================================== -->
+    <section class="section-spacing" id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">// Post-Production Protocol</span>
+          <h2 class="section-title">The Healthcare Editorial Pipeline</h2>
+          <p class="section-subtitle">How raw clinic footage is securely handled, edited with anatomical precision, and delivered on schedule.</p>
+        </div>
+
+        <div class="workflow-timeline">
+          
+          <div class="workflow-step">
+            <span class="step-badge">01</span>
+            <h3 class="step-title">Encrypted Ingestion</h3>
+            <p class="step-text">Footage transfer via end-to-end encrypted medical drives or secure cloud. Patient confidentiality protocols strictly checked prior to timeline assembly.</p>
+          </div>
+
+          <div class="workflow-step">
+            <span class="step-badge">02</span>
+            <h3 class="step-title">Clinical Verification</h3>
+            <p class="step-text">Transcription review to ensure specialized terminology, dosage references, and procedure names are spelled accurately in all subtitles and lower-thirds.</p>
+          </div>
+
+          <div class="workflow-step">
+            <span class="step-badge">03</span>
+            <h3 class="step-title">Surgical Pacing & Grade</h3>
+            <p class="step-text">Removing sterile monotony while maintaining poise. Color-grading harsh blue/green hospital light back to natural skin and clinical tones.</p>
+          </div>
+
+          <div class="workflow-step">
+            <span class="step-badge">04</span>
+            <h3 class="step-title">Practice Master Delivery</h3>
+            <p class="step-text">Exporting multi-format deliverables (9:16 vertical, 16:9 4K, 1:1) with burned-in compliant captions and clean master files ready for broadcast or social.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT THE SPECIALIST
+         ========================================================================== -->
+    <section class="section-spacing" id="about">
+      <div class="container">
+        <div class="about-card">
+          <div class="about-visual">
+            <div class="specs-panel">
+              <div class="spec-row">
+                <span>SUITE IDENT</span>
+                <span>VIRSTUDIO_MED_01</span>
+              </div>
+              <div class="spec-row">
+                <span>NLE WORKSPACE</span>
+                <span>DaVinci Resolve / Premiere Pro</span>
+              </div>
+              <div class="spec-row">
+                <span>COLOR WORKFLOW</span>
+                <span>ACEScc Medical Calibration</span>
+              </div>
+              <div class="spec-row">
+                <span>DATA INTEGRITY</span>
+                <span>Encrypted NVMe RAID</span>
+              </div>
+              <div class="spec-row">
+                <span>PRIVACY POLICY</span>
+                <span>HIPAA / Patient Respect</span>
+              </div>
+              <div class="spec-row">
+                <span>SPECIALTY FOCUS</span>
+                <span>Clinical & Healthcare Only</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <span class="section-tag">// Behind VIRSTUDIO</span>
+            <h3>A dedicated post-production specialist for medical authorities.</h3>
+            <p>
+              VIRSTUDIO was established with one mission: to eliminate the gap between high-level surgical and medical practice and mediocre video editing. Generic video editors often confuse medical jargon, leave in cringe-worthy jump cuts, or post graphic surgical footage that gets flagged on social algorithms.
+            </p>
+            <p>
+              I understand how physicians speak, the dignity patients expect, and the exact balance needed between high-retention digital engagement and healthcare professional ethics.
+            </p>
+
+            <div class="focus-tags">
+              <span class="f-tag">Plastic & Reconstructive Surgery</span>
+              <span class="f-tag">Dermatology & Aesthetics</span>
+              <span class="f-tag">Orthopedics & Sports Medicine</span>
+              <span class="f-tag">Dental Specialists</span>
+              <span class="f-tag">Cardiology & Internal Medicine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION & DIRECT WHATSAPP INTEGRATION
+         ========================================================================== -->
+    <section class="section-spacing" id="contact">
+      <div class="container">
+        <div class="contact-wrapper">
+          
+          <div class="contact-info">
+            <span class="section-tag">// Project Inquiries</span>
+            <h3>Book Specialist Video Editing For Your Practice</h3>
+            <p>Have existing raw procedure footage, patient interviews, or looking to establish regular social media reels for your medical brand? Inquire directly below.</p>
+
+            <div class="direct-links">
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact-method-detail">
+                  <h5>Direct Email</h5>
+                  <p>contact@virstudio.medical</p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="contact-method-detail">
+                  <h5>Service Location</h5>
+                  <p>Remote Worldwide // HIPAA & Global Compliance</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- WhatsApp Direct Card (Editable Phone & Prefilled Message) -->
+            <div class="whatsapp-card">
+              <h4>
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.537 1.769.779 2.796.779h.001c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.769-5.766zm3.377 8.203c-.14.394-.814.729-1.129.776-.315.048-.724.084-2.348-.588-1.954-.809-3.21-2.793-3.307-2.923-.098-.13-.797-1.06-.797-2.023 0-.964.506-1.439.686-1.634.181-.195.394-.244.525-.244.132 0 .263.001.378.007.12.006.28-.045.438.334.162.388.552 1.348.6 1.446.048.098.08.213.016.34-.064.128-.096.208-.19.319-.095.111-.2.247-.286.332-.095.095-.195.198-.083.391.111.192.496.818 1.063 1.324.73.652 1.346.854 1.538.95.192.095.305.08.418-.049.112-.128.481-.559.609-.751.128-.193.256-.16.432-.096.176.064 1.115.526 1.307.622.192.096.32.144.368.225.048.08.048.465-.092.859z"/></svg>
+                Instant WhatsApp Consultation
+              </h4>
+              <p>For urgent practice campaigns or quick assessment of raw footage suitability:</p>
+              <!-- 
+                =======================================================
+                EDIT YOUR WHATSAPP NUMBER HERE
+                Format: https://wa.me/[CountryCode][PhoneNumber]
+                ======================================================= 
+              -->
+              <a href="https://wa.me/15550192834?text=Hello%20VIRSTUDIO,%20I'd%20like%20to%20discuss%20a%20medical%20video%20project." 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="btn-whatsapp"
+                 id="bodyWhatsAppBtn">
+                Message on WhatsApp Directly
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div>
+            <form class="contact-form" id="projectForm" onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label for="doctorName">Doctor / Clinic / Organization Name *</label>
+                <input type="text" id="doctorName" class="form-input" placeholder="e.g. Dr. Julian Vance / Vance Aesthetic Surgery" required>
+              </div>
+
+              <div class="form-group">
+                <label for="practiceEmail">Practice Email Address *</label>
+                <input type="email" id="practiceEmail" class="form-input" placeholder="name@clinic.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceCategory">Primary Project Focus *</label>
+                <select id="serviceCategory" class="form-select" required>
+                  <option value="" disabled selected>Select Medical Editing Pillar</option>
+                  <option value="medical-reels">Medical Reels Editing (Instagram / TikTok)</option>
+                  <option value="testimonials">Doctor Testimonial Videos (Patient & Peer)</option>
+                  <option value="healthcare-production">Healthcare Video Production (Facility & Equipment)</option>
+                  <option value="social-media">Ongoing Social Media Video Editing</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="projectDetails">Project Scope & Raw Footage Notes *</label>
+                <textarea id="projectDetails" class="form-textarea" placeholder="Describe camera formats, turnaround timeline, surgical/clinical scope, and volume..." required></textarea>
+              </div>
+
+              <button type="submit" class="form-submit" id="submitBtn">
+                Send Consultation Request
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p>&copy; <span id="year"></span> VIRSTUDIO. Precision Healthcare & Medical Video Editing.</p>
+        <p style="font-size: 0.75rem; margin-top: 4px; color: var(--text-muted);">
+          Specialist service. Exclusively editing medical reels, doctor testimonials, and healthcare videos.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem;">
+        <a href="#home" class="nav-link">Top ↑</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       LIGHTWEIGHT MODAL VIDEO PLAYER
+       ========================================================================== -->
+  <div class="video-modal" id="videoModal" aria-modal="true" role="dialog">
+    <div class="modal-content-box" id="modalBox">
+      <div class="modal-header">
+        <h4 id="modalTitle">Medical Video Preview</h4>
+        <button class="modal-close-btn" onclick="closeVideoModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-video-container">
+        <video id="activeModalVideo" controls playsinline controlslist="nodownload">
+          <source src="" type="video/mp4" id="modalVideoSrc">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky WhatsApp Contact Button -->
+  <a href="https://wa.me/15550192834?text=Hi%20VIRSTUDIO,%20I'd%20like%20to%20inquire%20about%20medical%20video%20editing" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="floating-wa-btn" 
+     id="floatingWhatsAppBtn"
+     title="Chat directly on WhatsApp">
+    <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.983.537 1.769.779 2.796.779h.001c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.769-5.766zm3.377 8.203c-.14.394-.814.729-1.129.776-.315.048-.724.084-2.348-.588-1.954-.809-3.21-2.793-3.307-2.923-.098-.13-.797-1.06-.797-2.023 0-.964.506-1.439.686-1.634.181-.195.394-.244.525-.244.132 0 .263.001.378.007.12.006.28-.045.438.334.162.388.552 1.348.6 1.446.048.098.08.213.016.34-.064.128-.096.208-.19.319-.095.111-.2.247-.286.332-.095.095-.195.198-.083.391.111.192.496.818 1.063 1.324.73.652 1.346.854 1.538.95.192.095.305.08.418-.049.112-.128.481-.559.609-.751.128-.193.256-.16.432-.096.176.064 1.115.526 1.307.622.192.096.32.144.368.225.048.08.048.465-.092.859z"/></svg>
+    <span>WhatsApp Chat</span>
+  </a>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT: LOGIC & INTERACTIONS
+       ========================================================================== -->
+  <script>
+    // 1. Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Mobile Menu Navigation Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-open');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('mobile-open');
+      });
+    });
+
+    // 3. Category Filter Tabs
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Active tab state
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        portfolioCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 4. Video Player Modal Functionality
+    const videoModal = document.getElementById('videoModal');
+    const modalBox = document.getElementById('modalBox');
+    const modalTitle = document.getElementById('modalTitle');
+    const activeModalVideo = document.getElementById('activeModalVideo');
+    const modalVideoSrc = document.getElementById('modalVideoSrc');
+
+    function openVideoModal(url, title, format) {
+      modalTitle.textContent = title || 'Medical Case Showcase';
+      modalVideoSrc.src = url;
+      activeModalVideo.load();
+      
+      if (format === 'reel') {
+        modalBox.classList.add('aspect-reel');
+      } else {
+        modalBox.classList.remove('aspect-reel');
+      }
+
+      videoModal.classList.add('active');
+      activeModalVideo.play().catch(() => {
+        // Fallback if browser autoplay policies block on modal trigger
+      });
+    }
+
+    function closeVideoModal() {
+      activeModalVideo.pause();
+      modalVideoSrc.src = '';
+      activeModalVideo.load();
+      videoModal.classList.remove('active');
+    }
+
+    // Close on background backdrop click
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+        closeVideoModal();
+      }
+    });
+
+    // 5. Contact Form Handler (Factual Submission Simulation)
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const doctorName = document.getElementById('doctorName').value;
+      const category = document.getElementById('serviceCategory').value;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Encrypting & Transmitting...';
+
+      setTimeout(() => {
+        submitBtn.style.background = '#10B981';
+        submitBtn.textContent = 'Inquiry Received. Awaiting Review.';
+        alert(`Thank you, ${doctorName}. Your medical video post-production request (${category}) has been logged. VIRSTUDIO will contact your practice via email within 24 hours.`);
+        document.getElementById('projectForm').reset();
+        
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.style.background = '';
+          submitBtn.textContent = 'Send Consultation Request';
+        }, 3000);
+      }, 900);
+    }
+  </script>
+</body>
+</html>
